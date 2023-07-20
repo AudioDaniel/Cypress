@@ -18,10 +18,8 @@ describe('Saucedemo Login Page', () => {
     })
 
   it('wrong password login attempt', () => {
-  cy.get('[data-test="username"]').type('standard_user')
-    cy.get('[data-test="password"]').type('secret_sauc')
-    cy.get('[data-test="login-button"]').click()
-    cy.get('[data-test="error"]')
+    login_page.login_user("standard_user","secret_s")
+    login_page.verify_login_error("Epic sadface: Username and password do not match any user in this service")
     })
 
 })
