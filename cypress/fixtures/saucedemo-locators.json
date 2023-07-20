@@ -1,6 +1,7 @@
 {
     "login_page":{
         "username_input":"[data-test='username']",
-        "password_input":"[data-test='password']"
+        "password_input":"[data-test='password']",
+        "login_error":"[data-test='error']"
     }
 }

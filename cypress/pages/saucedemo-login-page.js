@@ -22,4 +22,7 @@ export class saucedemo_login_page{
         // cy.get('[data-test="password"]').type(password)
         // cy.get('[data-test="login-button"]').click()
     }
+    verify_login_error(desired_text){
+        common.verify_text(loginPage.login_error,null,desired_text)
+    }
 }
