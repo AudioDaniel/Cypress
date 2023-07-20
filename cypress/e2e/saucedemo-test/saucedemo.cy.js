@@ -23,5 +23,5 @@ describe('Saucedemo Login Page', () => {
     cy.get('[data-test="login-button"]').click()
     cy.get('[data-test="error"]')
     })
-
+    
 })
