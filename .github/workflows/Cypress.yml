@@ -32,7 +32,7 @@ jobs:
     - name: Save video files
       uses: actions/upload-artifact@v3
       with:
-        name: download video files
+        name: Video files
         path: | 
           ./cypress/videos
           
