@@ -1,10 +1,11 @@
 {
     "login_page":{
-        "username_input":"[data-test='username']",
-        "password_input":"[data-test='password']",
-        "login_error":"[data-test='error']"
+        "username_input":"#user-name",
+        "password_input":"#password",
+        "login_error":".error-message-container.error"
     },
     "shopping_page":{
-        
+        "sauce_labs_backpack":"#add-to-cart-sauce-labs-backpack",
+        "cart_badge":".shopping_cart_badge"
     }
 }

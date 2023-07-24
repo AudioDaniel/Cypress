@@ -1,8 +1,10 @@
 /// <reference types="Cypress" />
 import { saucedemo_login_page } from "../../pages/saucedemo-login-page"
+import { saucedemo_shopping_page } from "../../pages/saucedemo-shopping-page";
 
 
 const login_page = new saucedemo_login_page();
+const shopping_page = new saucedemo_shopping_page;
 
 describe('Saucedemo Login Page', () => {
 
@@ -24,7 +26,8 @@ describe('Saucedemo Login Page', () => {
 
   it('add item to cart', () => {
     login_page.login_user("standard_user","secret_sauce")
-    
+    shopping_page.click_product()
+    shopping_page.verify_cart_visibility()
     })
 
 })

@@ -14,12 +14,11 @@ before(function(){
 })
 
 export class saucedemo_shopping_page{
-    login_user(username,password){
-        common.type(loginPage.username_input,username)
-        common.type('[data-test="password"]',password)
-        common.click('[data-test="login-button"]')
+    click_product(){
+        common.click(shoppingPage.sauce_labs_backpack)
     }
     verify_cart_visibility(){
-        // CODE TO VERIFY CART
+        common.verify_visibility(shoppingPage.cart_badge)
+
     }
 }

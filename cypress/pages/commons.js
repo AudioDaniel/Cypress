@@ -15,7 +15,11 @@ export class commons{
     }
 
     verify_text(element,position,desired_text){
-
         this.find_element(element,position).should('contain',desired_text)
     }
+
+    verify_visibility(element,position){
+        this.find_element(element,position).should('be.visible')
+    }
+
 }
