@@ -34,5 +34,5 @@ jobs:
       with:
         name: download video files
         path: | 
-          cypress\videos
+          ./cypress/videos
           
