@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:saucedemo": "cypress run --spec \"cypress\\e2e\\saucedemo-test\\saucedemo.cy.js\""
   },
   "author": "",
   "license": "ISC",

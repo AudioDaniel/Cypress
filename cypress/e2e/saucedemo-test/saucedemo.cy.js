@@ -21,5 +21,10 @@ describe('Saucedemo Login Page', () => {
     login_page.login_user("standard_user","secret_s")
     login_page.verify_login_error("Epic sadface: Username and password do not match any user in this service")
     })
+
+  it('add item to cart', () => {
+    login_page.login_user("standard_user","secret_sauce")
     
+    })
+
 })
