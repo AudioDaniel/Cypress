@@ -30,7 +30,7 @@ jobs:
     - run: npm ci
     # - run: npm run build --if-present
     - run: npm run cy:saucedemo:chrome:${{matrix.viewport}}
-    - run: npm run cy:saucedemo:firefox:${{matrix.viewport}}
+    - run: npm run cy:saucedemo:edge:${{matrix.viewport}}
     - name: Save video files
       uses: actions/upload-artifact@v3
       with:
