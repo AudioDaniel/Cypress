@@ -31,10 +31,10 @@ jobs:
     # - run: npm run build --if-present
     - run: npm run cy:saucedemo:chrome:${{matrix.viewport}}
     - run: npm run cy:saucedemo:edge:${{matrix.viewport}}
-    - name: Save video files
+    - name: Save reprot
       uses: actions/upload-artifact@v3
       with:
-        name: Video files
+        name: Report ${{matrix.viewport}}
         path: | 
-          ./cypress/videos
+          .cypress/reports/html
           
