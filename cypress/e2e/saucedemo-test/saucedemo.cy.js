@@ -6,9 +6,13 @@ import { saucedemo_shopping_page } from "../../pages/saucedemo-shopping-page";
 const login_page = new saucedemo_login_page();
 const shopping_page = new saucedemo_shopping_page;
 
+let viewport_env = Cypress.env('VIEWPORT')
+// let viewport_env = 'macbook-16'
+
 describe('Saucedemo Login Page', () => {
 
   beforeEach(() => {
+    cy.viewport(viewport_env)
     cy.visit('https://www.saucedemo.com')
   })
 
