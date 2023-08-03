@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cy:saucedemo:chrome:macbook16": "cypress run --spec \"./cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=macbook-16 , --browser chrome",
-    "cy:saucedemo:edge:macbook16": "cypress run --spec \"./cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=macbook-16 , --browser edge",
-    "cy:saucedemo:chrome:iphone-xr": "cypress run --spec \"./cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=iphone-xr , --browser chrome" ,
-    "cy:saucedemo:edge:iphone-xr": "cypress run --spec \"./cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=iphone-xr , --browser edge"
+    "cy:saucedemo:chrome:macbook16": "cypress run --spec \"cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=macbook-16 , --browser chrome",
+    "cy:saucedemo:edge:macbook16": "cypress run --spec \"cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=macbook-16 , --browser edge",
+    "cy:saucedemo:chrome:iphone-xr": "cypress run --spec \"cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=iphone-xr , --browser chrome" ,
+    "cy:saucedemo:edge:iphone-xr": "cypress run --spec \"cypress/e2e/saucedemo-test/saucedemo.cy.js\", --env VIEWPORT=iphone-xr , --browser edge"
 
   },
   "author": "",
