@@ -33,6 +33,7 @@ jobs:
     - run: npm run cy:saucedemo:edge:${{matrix.viewport}}
     - name: Save report ${{matrix.viewport}}
       uses: actions/upload-artifact@v3
+      if: always()
       with:
         name: Report ${{matrix.viewport}}
         path: | 
