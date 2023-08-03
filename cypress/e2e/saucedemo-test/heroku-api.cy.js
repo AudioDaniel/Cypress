@@ -18,6 +18,16 @@ function verify_login (pkmn_name){
 
 
 describe('Herokuapp API testing', () => {
+    
+    it('verify basic auth wrong credentials', () => {
+        cy.visit(herokuapp_endpoint,{failOnStatusCode: false},{
+            auth:{
+                username: 'admin',
+                password: '123'
+                }
+            })
+            cy.get('body').should('include.text','Not authorized')
+        })
 
     it('verify basic auth', () => {
         cy.visit(herokuapp_endpoint,{
@@ -36,16 +46,7 @@ describe('Herokuapp API testing', () => {
 
 
 
-    it('verify basic auth wrong credentials', () => {
-        cy.visit(herokuapp_endpoint,{failOnStatusCode: false},{
-            auth:{
-                username: 'admin',
-                password: '123'
-                }
-            })
-            cy.get('body').should('include.text','Not authorized')
-        })
-
+    
     it('verify form', () => {
         cy.visit('https://the-internet.herokuapp.com')
         cy.request({
