@@ -20,19 +20,44 @@ describe('Herokuapp API testing', () => {
         })
 
 
-    it('create product', () => {
-        const productData = {
-            "name": "guild Surfliner Catalina Blue",
-            "price": 400,
-            "manufacturer": "guild",
-            "category": "guitarrillas",
-            "description": "Guitarra Surfliner en color Catalina Blue",
-            "tags": "guild, guitarrilla"
-        };
-        cy.request({
-            method: 'POST',
-            url: `${mystoreapi_endpoint}/catalog/product`,
-            body: productData
+        it('create and delete product', () => {
+            const productData = {
+                "name": "guild Surfliner Catalina Blue",
+                "price": 400,
+                "manufacturer": "guild",
+                "category": "guitarrillas",
+                "description": "Guitarra Surfliner en color Catalina Blue",
+                "tags": "guild, guitarrilla"
+            };
+        
+            // Create the product
+            cy.request({
+                method: 'POST',
+                url: `${mystoreapi_endpoint}/catalog/product`,
+                body: productData
+            }).then((response) => {
+                // Assuming the API response contains the new product's ID
+                const productId = response.body.id;
+
+                cy.request({
+                    method: 'GET',
+                    url: `${mystoreapi_endpoint}/catalog/product/${productId}`
+                })
+        
+                // Delete the product using the obtained ID
+                cy.request({
+                    method: 'DELETE',
+                    url: `${mystoreapi_endpoint}/catalog/product/${productId}`
+                });
+
+                cy.request({
+                    method: 'GET',
+                    url: `${mystoreapi_endpoint}/catalog/product/${productId}`,
+                    failOnStatusCode: false // Allow 404 response without failing the test
+                }).then((getResponse) => {
+                    expect(getResponse.status).to.equal(404);
+                });
+            });
+
         });
-        })
     })
