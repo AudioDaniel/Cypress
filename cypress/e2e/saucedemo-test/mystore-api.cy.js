@@ -4,7 +4,7 @@ describe('Herokuapp API testing', () => {
 
     const mystoreapi_endpoint = 'https://mystoreapi.com'
 
-    it('verify basic auth', () => {
+    it('verify product to exist', () => {
         cy.request({
             method:'GET',
             url:`${mystoreapi_endpoint}/catalog/categories`,
@@ -14,10 +14,25 @@ describe('Herokuapp API testing', () => {
             .then((categories) => {
                 // Verify the status code of the response
                 //expect(categories.status).to.equal(200);
-                const fruitsCategory = categories.find((item) => item.category === 'fruits');
-                expect(fruitsCategory).to.exist;
-                const fruitsValue = fruitsCategory.category;
-                
+                const guitarrillasCategory = categories.find((item) => item.category === 'guitarrillas');
+                expect(guitarrillasCategory).to.exist;
             })
+        })
+
+
+    it('create product', () => {
+        const productData = {
+            "name": "guild Surfliner Catalina Blue",
+            "price": 400,
+            "manufacturer": "guild",
+            "category": "guitarrillas",
+            "description": "Guitarra Surfliner en color Catalina Blue",
+            "tags": "guild, guitarrilla"
+        };
+        cy.request({
+            method: 'POST',
+            url: `${mystoreapi_endpoint}/catalog/product`,
+            body: productData
+        });
         })
     })
