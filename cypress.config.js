@@ -1,31 +1,24 @@
 /// <reference types="Cypress" />
 const { defineConfig } = require("cypress");
-const { beforeRunHook, afterRunHook } = require('cypress-mochawesome-reporter/lib');
-
-
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const addCucumberPreprocessorPlugin = require("@badeball/cypress-cucumber-preprocessor").addCucumberPreprocessorPlugin;
+const createEsBuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esbuild").createEsbuildPlugin;
 
 module.exports = defineConfig({
-  reporter: 'cypress-mochawesome-reporter',
-  reporterOptions: {
-    charts: true,
-    reportPageTitle: 'custom-title',
-    embeddedScreenshots: true,
-    inlineAssets: true,
-    saveAllAttempts: false,
-  },
+  projectId: '',
+  chromeWebSecurity: false,
+  video: false,
   e2e: {
-    chromeWebSecurity: false,
-    //experimentalModifyObstructiveThirdPartyCode	: true,
-    setupNodeEvents(on, config) {
-      on('before:run', async (details) => {
-        console.log('override before:run');
-        await beforeRunHook(details);
+    async setupNodeEvents(on, config) {
+      // implement node event listeners here
+      const bundler = createBundler({
+        plugins: [createEsBuildPlugin(config)],
       });
-
-      on('after:run', async () => {
-        console.log('override after:run');
-        await afterRunHook();
-      });
+      on('file:preprocessor', bundler);
+      await addCucumberPreprocessorPlugin(on, config);
+      return config;
     },
+    specPattern: 'cypress/integration/features/*.feature'
+    
   },
 });
