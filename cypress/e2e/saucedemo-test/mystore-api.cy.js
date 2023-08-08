@@ -2,7 +2,29 @@
 describe('Herokuapp API testing', () => {
 
 
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const fecha_hora = new Date().toLocaleString()
+
+    function generateString(length) {
+        let result = ' ';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+    
+        return result;
+    }
+
     const mystoreapi_endpoint = 'https://mystoreapi.com'
+    const credentials = {
+        username: fecha_hora,
+        password: generateString(6)
+    };
+
+    before(() => {
+        cy.log(generateString(10))
+        cy.log(fecha_hora)
+      })
 
     it('verify product to exist', () => {
         cy.request({
@@ -57,6 +79,38 @@ describe('Herokuapp API testing', () => {
                 }).then((getResponse) => {
                     expect(getResponse.status).to.equal(404);
                 });
+            });
+
+        });
+
+        it('create user', () => {
+            cy.request({
+                method: 'POST',
+                url: `${mystoreapi_endpoint}/auth/user`,
+                body: credentials
+            }).then((response) => {
+                expect(response.status).to.equal(201);
+                expect(response.body).to.have.property('status');
+                expect(response.body.status).to.equal('active');
+            });
+        })
+
+        it('should authenticate successfully', () => {
+            cy.request({
+                method: 'POST',
+                url: `${mystoreapi_endpoint}/auth/login`,
+                body: credentials
+            }).then((response) => {
+                expect(response.status).to.equal(201);
+                expect(response.body).to.have.property('access_token');
+                cy.log(response.body.access_token)
+                cy.request({
+                    method: 'GET',
+                    url: `${mystoreapi_endpoint}/auth/me`,
+                    headers: { Authorization : "Bearer " + response.body.access_token }
+                }).then((response1) => {
+                    expect(response1.body.username).to.equal(credentials.username)
+                })
             });
 
         });
