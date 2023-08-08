@@ -21,7 +21,6 @@
     "cypress-mochawesome-reporter": "^3.5.1"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": false,
-    "stepDefinitions": "cypress/integration/step_definitions/*"
+    "stepDefinitions": "cypress/integration/step_defs/*.{js,ts}"
   }
 }

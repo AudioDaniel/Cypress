@@ -1,4 +1,4 @@
 Feature: duckduckgo.com
-  Scenario: visiting the frontpage
+  Scenario: visting the frontpage
     When I visit duckduckgo.com
     Then I should see a search bar
