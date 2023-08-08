@@ -18,6 +18,7 @@ describe('Saucedemo Login Page', () => {
 
   it('standard_user login', () => {
     login_page.login_user("standard_user","secret_sauce")
+    cy.xpath
     //cy.get('[data-test="username"]').type('standard_user')
     //cy.get('[data-test="password"]').type('secret_sauce')
     //cy.get('[data-test="login-button"]').click()
