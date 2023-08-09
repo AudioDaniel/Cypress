@@ -7,6 +7,7 @@ const createEsBuildPlugin = require("@badeball/cypress-cucumber-preprocessor/esb
 module.exports = defineConfig({
   projectId: '',
   chromeWebSecurity: false,
+  blockHosts: ["*.google-analytics.com","*.googlesyndication.com","*.doubleclick.net","*.stat-rock.com"],
   video: false,
   e2e: {
     async setupNodeEvents(on, config) {
