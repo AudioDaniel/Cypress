@@ -41,7 +41,7 @@ Then("I click practice forms", () => {
   const last_name = "Pérez"
   const mail = "userjoseperez@mail.com"
   const number = "603999222"
-  const birth = "09 Aug 1995"
+  const birth = "1996-8-7"
   cy.get('h5').should('be.visible')
   cy.get('#firstName').type(name)
   cy.get('#lastName').type(last_name)
@@ -52,11 +52,19 @@ Then("I click practice forms", () => {
   for (let i = 0; i < 10; i++) {
     cy.get('#dateOfBirthInput').type('{backspace}')
   }
+  cy.get('#dateOfBirthInput').type('0')
+  cy.get('#dateOfBirthInput').type('{leftArrow}')
+  cy.get('#dateOfBirthInput').type('{backspace}')
   cy.get('#dateOfBirthInput').type(birth)
+  cy.get('#dateOfBirthInput').type('{rightArrow}')
+  cy.get('#dateOfBirthInput').type('{backspace}')
   cy.get('#state > .css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder').click()
   cy.get('#react-select-3-option-2').click()
   cy.get('#city > .css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder').click()
   cy.get('#react-select-4-option-0').click()
   cy.get('#submit').click({force: true})
 
+  // TODO Rellenar campo de fecha usando clicks
+  // TODO Quitar locators de aquí, meterlos en un json o en otra clase
+  // TODO Meter report html
   })
