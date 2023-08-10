@@ -1,0 +1,13 @@
+{
+    "form_page":{
+        "firstname_input":"#firstName",
+        "lastname_input":"#lastName",
+        "email_input":"#userEmail",
+        "gender_male_check": "#genterWrapper > .col-md-9 > :nth-child(1)",
+        "phone_input": "#userNumber",
+        "birthdate_input":"#dateOfBirthInput",
+        "month_selector":".react-datepicker__month-select",
+        "year_selector":".react-datepicker__year-select",
+        "day20": ".react-datepicker__day--020"    
+    }
+}

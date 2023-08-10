@@ -1,5 +1,15 @@
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
+before(function(){
+  cy.fixture('demoqa-locators').then(({
+
+      form_page,
+  }) => {
+      formPage = form_page
+  })
+
+})
+
 
 When("I visit demoqa.com", () => {
   cy.visit("https://demoqa.com/");
@@ -36,35 +46,63 @@ Then("I click practice forms", () => {
   // })
   cy.get(':nth-child(2) > .element-list > .menu-list > #item-0 > .text').click()
   })
-  Then("I input data onto the form", () => {
+
+
+Then("I input data onto the form", () => {
+
   const name = "Jose"
   const last_name = "Pérez"
   const mail = "userjoseperez@mail.com"
   const number = "603999222"
   const birth = "1996-8-7"
+
+
   cy.get('h5').should('be.visible')
-  cy.get('#firstName').type(name)
-  cy.get('#lastName').type(last_name)
-  cy.get('#userEmail').type(mail)
-  cy.get('#genterWrapper > .col-md-9 > :nth-child(1)').click()
-  cy.get('#userNumber').type(number)
-  cy.get('#dateOfBirthInput').click()
+  cy.get(formPage.firstname_input).type(name)
+  cy.get(formPage.lastname_input).type(last_name)
+  cy.get(formPage.email_input).type(mail)
+  cy.get(formPage.gender_male_check).click()
+  cy.get(formPage.phone_input).type(number)
+  cy.get(formPage.birthdate_input).click()
   for (let i = 0; i < 10; i++) {
-    cy.get('#dateOfBirthInput').type('{backspace}')
+    cy.get(formPage.birthdate_input).type('{backspace}')
   }
-  cy.get('#dateOfBirthInput').type('0')
-  cy.get('#dateOfBirthInput').type('{leftArrow}')
-  cy.get('#dateOfBirthInput').type('{backspace}')
-  cy.get('#dateOfBirthInput').type(birth)
-  cy.get('#dateOfBirthInput').type('{rightArrow}')
-  cy.get('#dateOfBirthInput').type('{backspace}')
+  cy.get(formPage.birthdate_input).type('0')
+  cy.get(formPage.birthdate_input).type('{leftArrow}')
+  cy.get(formPage.birthdate_input).type('{backspace}')
+  cy.get(formPage.birthdate_input).type(birth)
+  cy.get(formPage.birthdate_input).type('{rightArrow}')
+  cy.get(formPage.birthdate_input).type('{backspace}')
   cy.get('#state > .css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder').click()
   cy.get('#react-select-3-option-2').click()
   cy.get('#city > .css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder').click()
   cy.get('#react-select-4-option-0').click()
   cy.get('#submit').click({force: true})
 
-  // TODO Rellenar campo de fecha usando clicks
-  // TODO Quitar locators de aquí, meterlos en un json o en otra clase
   // TODO Meter report html
+  })
+
+  Then("I input data onto the form by clicking", () => {
+
+    const name = "Jose"
+    const last_name = "Pérez"
+    const mail = "userjoseperez@mail.com"
+    const number = "603999222"  
+  
+    cy.get('h5').should('be.visible')
+    cy.get(formPage.firstname_input).type(name)
+    cy.get(formPage.lastname_input).type(last_name)
+    cy.get(formPage.email_input).type(mail)
+    cy.get(formPage.gender_male_check).click()
+    cy.get(formPage.phone_input).type(number)
+    cy.get(formPage.birthdate_input).click()
+    cy.get(formPage.month_selector).select('July')
+    cy.get(formPage.year_selector).select('1993')
+    cy.get(formPage.day20).click()
+    cy.get('#state > .css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder').click()
+    cy.get('#react-select-3-option-2').click()
+    cy.get('#city > .css-yk16xz-control > .css-1hwfws3 > .css-1wa3eu0-placeholder').click()
+    cy.get('#react-select-4-option-0').click()
+    cy.get('#submit').click({force: true})
+  
   })
