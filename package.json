@@ -13,21 +13,21 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@badeball/cypress-cucumber-preprocessor": "18.0.3",
+    "@badeball/cypress-cucumber-preprocessor": "18.0.4",
     "@bahmutov/cypress-esbuild-preprocessor": "2.2.0",
     "cypress": "^12.17.1",
-    "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-xpath": "2.0.1",
     "multiple-cucumber-html-reporter": "^3.4.0"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
     "stepDefinitions": "cypress/integration/step_defs/*.{js,ts}",
-    "cucumberJson": {
-      "generate": true,
-      "outputFolder": "cypress/cucumber-json",
-      "filePrefix": "",
-      "fileSuffix": ".cucumber"
+    "json": {
+      "enabled": true
+    },
+    "html": {
+      "enabled": true
     }
   }
 }
+
